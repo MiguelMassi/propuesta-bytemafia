@@ -226,13 +226,9 @@ const FormValidationDemo = ({ p, g }: { p: string, g: string }) => {
 };
 
 const PropuestaTecnica = () => {
-  const [font, setFont] = useState('font-inter');
-  const [currentTheme, setCurrentTheme] = useState<ThemeKey>('blue');
-
   // Helpers para clases dinámicas
-  const theme = THEMES[currentTheme];
-  const p = theme.primary;
-  const g = theme.gray;
+  const p = 'blue';
+  const g = 'zinc';
 
   const techStack = [
     {
@@ -290,73 +286,7 @@ const PropuestaTecnica = () => {
   ];
 
   return (
-    <div className={`${font === 'font-inter' ? inter.className : montserrat.className} min-h-screen bg-${g}-50 text-${g}-900 transition-colors duration-300 relative`}>
-      {/* Navbar con estilo idéntico a la Home */}
-      <nav className={`sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-${g}-200 transition-colors duration-300`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo con Link al Home */}
-            <Link href="/" className="flex items-center gap-2 group">
-              <div className={`bg-${p}-600 p-2 rounded-lg group-hover:bg-${p}-700 transition-colors`}>
-                <Building2 className="w-6 h-6 text-white" />
-              </div>
-              <span className={`text-xl font-bold text-${g}-900 ${montserrat.className}`}>
-                Byte<span className={`text-${p}-600`}>Mafia</span>
-              </span>
-            </Link>
-
-            <div className="hidden md:flex items-center gap-8">
-              <Link href="/" className={`text-${g}-600 hover:text-${p}-600 font-medium transition-colors`}>Inicio</Link>
-              <div className={`flex items-center gap-4 border-l border-${g}-200 ml-4 pl-4`}>
-                <button className={`p-2 text-${g}-400 hover:text-${p}-600 transition-colors`}>
-                  <Bell className="w-5 h-5" />
-                </button>
-                <button className={`flex items-center gap-2 p-1 pr-3 rounded-full bg-${g}-100 hover:bg-${g}-200 transition-colors`}>
-                  <UserCircle className={`w-8 h-8 text-${g}-500`} />
-                  <span className={`text-sm font-medium text-${g}-700`}>Cuenta</span>
-                </button>
-              </div>
-            </div>
-
-            <button className={`md:hidden p-2 text-${g}-600`}>
-              <Menu className="w-6 h-6" />
-            </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* BARRA DE CONTROL DE DEMO (Idéntica al Home) */}
-      <div className={`bg-white text-${g}-500 py-2 text-center text-xs border-b border-${g}-200 transition-colors duration-500 sticky top-16 z-40`}>
-          <div className="flex justify-center gap-6 items-center flex-wrap px-4">
-            {/* Selector de Fuente */}
-            <div className="flex items-center gap-2">
-                <Wand2 className="size-3" />
-                <span className="opacity-80 font-mono">FUENTE:</span>
-                <button onClick={() => setFont('font-montserrat')} className={`px-3 py-0.5 rounded transition-colors ${font === 'font-montserrat' ? `bg-${p}-600 text-white` : `hover:bg-${g}-100`}`}>Montserrat</button>
-                <button onClick={() => setFont('font-inter')} className={`px-3 py-0.5 rounded transition-colors ${font === 'font-inter' ? `bg-${p}-600 text-white` : `hover:bg-${g}-100`}`}>Inter</button>
-            </div>
-            <div className={`w-px h-4 bg-${g}-200 hidden sm:block`}></div>
-            {/* Selector de Tema */}
-            <div className="flex items-center gap-2">
-                <Palette className="size-3" />
-                <span className="opacity-80 font-mono">TEMA:</span>
-                <div className="flex gap-1">
-                    {(Object.keys(THEMES) as ThemeKey[]).map((key) => (
-                        <button 
-                            key={key}
-                            onClick={() => setCurrentTheme(key)}
-                            className={`size-5 rounded-full flex items-center justify-center transition-transform hover:scale-110 ${currentTheme === key ? 'ring-2 ring-white' : ''}`}
-                            style={{ backgroundColor: THEMES[key].hex }}
-                            title={THEMES[key].label}
-                        >
-                            {currentTheme === key && <Check className="size-3 text-white" strokeWidth={3} />}
-                        </button>
-                    ))}
-                </div>
-            </div>
-          </div>
-      </div>
-
+    <div className={`min-h-screen`}>
       <main className="max-w-5xl mx-auto px-6 py-16">
         <header className="mb-16 text-center">
           <div className={`inline-flex items-center gap-2 bg-${p}-50 text-${p}-700 px-4 py-2 rounded-full mb-6`}>
@@ -860,21 +790,6 @@ const PropuestaTecnica = () => {
           </div>
         </footer>
       </main>
-
-      {/* SAFELIST: Forzar generación de clases dinámicas de Tailwind (Copiado del Home) */}
-      <div className="hidden">
-        {/* Grays */}
-        <div className="bg-slate-50 bg-slate-900 text-slate-500 text-slate-600 text-slate-900 border-slate-100 border-slate-200 border-slate-500"></div>
-        <div className="bg-zinc-50 bg-zinc-900 text-zinc-500 text-zinc-600 text-zinc-900 border-zinc-100 border-zinc-200 border-zinc-500"></div>
-        <div className="bg-stone-50 bg-stone-900 text-stone-500 text-stone-600 text-stone-900 border-stone-100 border-stone-200 border-stone-500"></div>
-        {/* Primaries */}
-        <div className="bg-blue-50 bg-blue-100 bg-blue-500 bg-blue-600 text-blue-100 text-blue-500 text-blue-600 text-blue-700 border-blue-200 border-blue-400 border-blue-500 ring-blue-500 shadow-blue-500/20 hover:shadow-blue-500/10"></div>
-        <div className="bg-indigo-50 bg-indigo-100 bg-indigo-500 bg-indigo-600 text-indigo-100 text-indigo-500 text-indigo-600 text-indigo-700 border-indigo-200 border-indigo-400 border-indigo-500 ring-indigo-500 shadow-indigo-500/20 hover:shadow-indigo-500/10"></div>
-        <div className="bg-rose-50 bg-rose-100 bg-rose-500 bg-rose-600 text-rose-100 text-rose-500 text-rose-600 text-rose-700 border-rose-200 border-rose-400 border-rose-500 ring-rose-500 shadow-rose-500/20 hover:shadow-rose-500/10"></div>
-        <div className="bg-amber-50 bg-amber-100 bg-amber-500 bg-amber-600 text-amber-100 text-amber-500 text-amber-600 text-amber-700 border-amber-200 border-amber-400 border-amber-500 ring-amber-500 shadow-amber-500/20 hover:shadow-amber-500/10"></div>
-        <div className="bg-violet-50 bg-violet-100 bg-violet-500 bg-violet-600 text-violet-100 text-violet-500 text-violet-600 text-violet-700 border-violet-200 border-violet-400 border-violet-500 ring-violet-500 shadow-violet-500/20 hover:shadow-violet-500/10"></div>
-        <div className="bg-emerald-50 bg-emerald-100 bg-emerald-500 bg-emerald-600 text-emerald-100 text-emerald-500 text-emerald-600 text-emerald-700 border-emerald-200 border-emerald-400 border-emerald-500 ring-emerald-500 shadow-emerald-500/20 hover:shadow-emerald-500/10"></div>
-      </div>
     </div>
   );
 };
