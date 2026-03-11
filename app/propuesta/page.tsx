@@ -38,7 +38,18 @@ import {
   Image,
   Settings,
   Search,
-  Filter
+  Filter,
+  MapPin,
+  Bed,
+  Bath,
+  Square,
+  Heart,
+  Calendar,
+  Share2,
+  BarChart3,
+  TrendingUp,
+  Globe,
+  Smartphone
 } from 'lucide-react';
 import { Inter, Montserrat } from 'next/font/google';
 
@@ -244,6 +255,38 @@ const PropuestaTecnica = () => {
       icon: <ShieldCheck className="w-8 h-8 text-indigo-600" />,
       justification: "Prisma actúa como el motor de gestión de datos, ofreciendo un acceso eficiente y seguro a la base de datos. Su tipado automático previene errores en las consultas y facilita la gestión de relaciones complejas entre los datos de la app."
     }
+  ];
+
+  // Lista de todos los iconos utilizados para la sección de Iconografía
+  const iconsList = [
+    { name: 'Propiedad', Icon: Home },
+    { name: 'Edificio', Icon: Building2 },
+    { name: 'Ubicación', Icon: MapPin },
+    { name: 'Dormitorios', Icon: Bed },
+    { name: 'Baños', Icon: Bath },
+    { name: 'Metros²', Icon: Square },
+    { name: 'Precio', Icon: DollarSign },
+    { name: 'Buscar', Icon: Search },
+    { name: 'Filtros', Icon: Filter },
+    { name: 'Favoritos', Icon: Heart },
+    { name: 'Citas', Icon: Calendar },
+    { name: 'Compartir', Icon: Share2 },
+    { name: 'Galería', Icon: Image },
+    { name: 'Contacto', Icon: Mail },
+    { name: 'Teléfono', Icon: Phone },
+    { name: 'Usuario', Icon: UserCircle },
+    { name: 'Notificaciones', Icon: Bell },
+    { name: 'Seguridad', Icon: ShieldCheck },
+    { name: 'Privacidad', Icon: Lock },
+    { name: 'Config', Icon: Settings },
+    { name: 'Menú', Icon: Menu },
+    { name: 'Dashboard', Icon: Layout },
+    { name: 'Métricas', Icon: BarChart3 },
+    { name: 'Tendencia', Icon: TrendingUp },
+    { name: 'Web', Icon: Globe },
+    { name: 'Móvil', Icon: Smartphone },
+    { name: 'Éxito', Icon: CheckCircle2 },
+    { name: 'Alerta', Icon: AlertTriangle }
   ];
 
   return (
@@ -667,26 +710,26 @@ const PropuestaTecnica = () => {
                <h3 className={`text-xl font-bold text-${g}-800 mb-6 border-b border-${g}-100 pb-2`}>Escala Tipográfica</h3>
                <div className="space-y-6">
                   <div className="grid md:grid-cols-4 items-center gap-4">
-                    <span className={`text-${g}-400 text-sm font-mono`}>H1 / 4xl / Extrabold</span>
-                    <h1 className="col-span-3 text-4xl font-extrabold text-slate-900">El rápido zorro marrón</h1>
+                    <span className={`text-${g}-400 text-sm font-mono`}>H1 / Montserrat / 4xl</span>
+                    <h1 className={`${montserrat.className} col-span-3 text-4xl font-extrabold text-${g}-900`}>El rápido zorro marrón</h1>
                   </div>
                   <div className="grid md:grid-cols-4 items-center gap-4">
-                    <span className={`text-${g}-400 text-sm font-mono`}>H2 / 3xl / Bold</span>
-                    <h2 className="col-span-3 text-3xl font-bold text-slate-900">Salta sobre el perro perezoso</h2>
+                    <span className={`text-${g}-400 text-sm font-mono`}>H2 / Montserrat / 3xl</span>
+                    <h2 className={`${montserrat.className} col-span-3 text-3xl font-bold text-${g}-900`}>Salta sobre el perro perezoso</h2>
                   </div>
                   <div className="grid md:grid-cols-4 items-center gap-4">
-                    <span className={`text-${g}-400 text-sm font-mono`}>H3 / xl / Semibold</span>
-                    <h3 className="col-span-3 text-xl font-semibold text-slate-900">Visualización de datos y métricas</h3>
+                    <span className={`text-${g}-400 text-sm font-mono`}>H3 / Montserrat / xl</span>
+                    <h3 className={`${montserrat.className} col-span-3 text-xl font-semibold text-${g}-900`}>Visualización de datos y métricas</h3>
                   </div>
                   <div className="grid md:grid-cols-4 items-center gap-4">
-                    <span className={`text-${g}-400 text-sm font-mono`}>P / base / Regular</span>
-                    <p className={`col-span-3 text-base leading-relaxed text-${g}-600`}>
+                    <span className={`text-${g}-400 text-sm font-mono`}>P / Inter / base</span>
+                    <p className={`${inter.className} col-span-3 text-base leading-relaxed text-${g}-600`}>
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                     </p>
                   </div>
                   <div className="grid md:grid-cols-4 items-center gap-4">
-                    <span className={`text-${g}-400 text-sm font-mono`}>Small / sm / Medium</span>
-                    <small className={`col-span-3 text-sm font-medium text-${g}-500`}>
+                    <span className={`text-${g}-400 text-sm font-mono`}>Small / Inter / sm</span>
+                    <small className={`${inter.className} col-span-3 text-sm font-medium text-${g}-500`}>
                       *Términos y condiciones aplican. Válido hasta agotar stock.
                     </small>
                   </div>
@@ -774,6 +817,38 @@ const PropuestaTecnica = () => {
 
                     </div>
                 </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Iconografía */}
+        <section className="mt-20">
+          <header className="mb-12 text-center">
+            <div className={`inline-flex items-center gap-2 bg-${p}-50 text-${p}-700 px-4 py-2 rounded-full mb-6`}>
+              <Layout className="w-4 h-4" />
+              <span className="text-sm font-semibold uppercase tracking-wider">Recursos Visuales</span>
+            </div>
+            <h2 className={`${montserrat.className} text-3xl font-extrabold text-${g}-900 mb-3`}>
+              Iconografía
+            </h2>
+            <p className={`text-lg text-${g}-600 max-w-3xl mx-auto`}>
+              Conjunto de iconos consistentes utilizados en toda la aplicación.
+            </p>
+            <a href="https://lucide.dev/icons" target="_blank" rel="noopener noreferrer" className={`mt-4 inline-flex items-center gap-2 text-${p}-600 font-bold hover:underline`}>
+                Buscar en librería oficial (Lucide) <ChevronRight className="size-4" />
+            </a>
+          </header>
+
+          <div className={`bg-white p-8 rounded-2xl border border-${g}-200 shadow-sm`}>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+               {iconsList.map(({ name, Icon }) => (
+                 <div key={name} className="flex flex-col items-center gap-3 group cursor-default">
+                    <div className={`p-4 rounded-xl bg-${g}-50 text-${g}-500 group-hover:bg-${p}-50 group-hover:text-${p}-600 transition-colors`}>
+                        <Icon className="size-6" />
+                    </div>
+                    <span className={`text-xs font-medium text-${g}-500 font-mono group-hover:text-${g}-900`}>{name}</span>
+                 </div>
+               ))}
             </div>
           </div>
         </section>
