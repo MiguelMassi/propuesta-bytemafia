@@ -24,9 +24,17 @@ import {
   X,
   CheckCircle,
   AlertTriangle,
+  AlertCircle,
   HelpCircle,
   ChevronUp,
-  ChevronDown
+  ChevronDown,
+  Mail,
+  Phone,
+  Lock,
+  Eye,
+  EyeOff,
+  DollarSign,
+  CheckCircle2
 } from 'lucide-react';
 import { Inter, Montserrat } from 'next/font/google';
 
@@ -44,6 +52,163 @@ const THEMES = {
 };
 
 type ThemeKey = keyof typeof THEMES;
+
+// Componente Demo de Formulario (Definido aquí para uso en la propuesta)
+const FormValidationDemo = ({ p, g }: { p: string, g: string }) => {
+  const [form, setForm] = useState({ email: '', password: '', phone: '', price: '' });
+  const [showPass, setShowPass] = useState(false);
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+
+  const validate = {
+    email: (v: string) => !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) ? 'Formato inválido (@ y dominio)' : '',
+    password: (v: string) => {
+        if (v.length < 8) return 'Mín. 8 caracteres';
+        if (!/[A-Z]/.test(v)) return 'Falta mayúscula';
+        if (!/[0-9]/.test(v)) return 'Falta número';
+        return '';
+    },
+    phone: (v: string) => v.length < 8 ? 'Se requieren 8 dígitos' : '',
+    price: (v: string) => !v ? 'Requerido' : ''
+  };
+
+  const errors = {
+    email: validate.email(form.email),
+    password: validate.password(form.password),
+    phone: validate.phone(form.phone),
+    price: validate.price(form.price)
+  };
+
+  const handlePhone = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let v = e.target.value.replace(/\D/g, '');
+    if (v.length > 8) v = v.slice(0, 8);
+    setForm({ ...form, phone: v });
+  };
+
+  const isFormValid = !Object.values(errors).some(Boolean) && Object.values(form).every(Boolean);
+
+  return (
+    <div className={`grid md:grid-cols-2 gap-12 items-center`}>
+        {/* Form Visual */}
+        <div className={`bg-white p-8 rounded-2xl border border-${g}-200 shadow-lg`}>
+            <h3 className={`text-lg font-bold text-${g}-900 mb-6 flex items-center gap-2`}>
+                <div className={`p-2 bg-${p}-100 rounded-lg text-${p}-600`}><ShieldCheck className="size-5" /></div>
+                Formulario Seguro
+            </h3>
+            <div className="space-y-5">
+                {/* Email */}
+                <div>
+                    <label className={`text-xs font-semibold text-${g}-500 uppercase tracking-wider`}>Email Corporativo</label>
+                    <div className="relative mt-1">
+                        <Mail className={`absolute left-3 top-3 size-4 text-${g}-400`} />
+                        <input 
+                            type="email" 
+                            value={form.email}
+                            onChange={(e) => setForm({...form, email: e.target.value})}
+                            onBlur={() => setTouched({...touched, email: true})}
+                            className={`w-full pl-10 pr-4 py-2.5 rounded-lg border ${touched.email && errors.email ? 'border-red-500 bg-red-50 text-red-900' : `border-${g}-200 focus:border-${p}-500 focus:ring-4 focus:ring-${p}-500/10`} transition-all outline-none text-sm`}
+                            placeholder="nombre@empresa.com"
+                        />
+                    </div>
+                    {touched.email && errors.email && <p className="text-red-500 text-xs mt-1 flex items-center gap-1"><AlertCircle className="size-3" /> {errors.email}</p>}
+                </div>
+
+                {/* Password */}
+                <div>
+                    <label className={`text-xs font-semibold text-${g}-500 uppercase tracking-wider`}>Contraseña Segura</label>
+                    <div className="relative mt-1">
+                        <Lock className={`absolute left-3 top-3 size-4 text-${g}-400`} />
+                        <input 
+                            type={showPass ? "text" : "password"}
+                            value={form.password}
+                            onChange={(e) => setForm({...form, password: e.target.value})}
+                            onBlur={() => setTouched({...touched, password: true})}
+                            className={`w-full pl-10 pr-10 py-2.5 rounded-lg border ${touched.password && errors.password ? 'border-red-500 bg-red-50 text-red-900' : `border-${g}-200 focus:border-${p}-500 focus:ring-4 focus:ring-${p}-500/10`} transition-all outline-none text-sm`}
+                            placeholder="••••••••"
+                        />
+                        <button onClick={() => setShowPass(!showPass)} className={`absolute right-3 top-3 text-${g}-400 hover:text-${g}-600`}>
+                            {showPass ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
+                        </button>
+                    </div>
+                    {/* Password Strength Indicators */}
+                    <div className="flex gap-2 mt-2">
+                        <div className={`h-1 flex-1 rounded-full ${form.password.length >= 8 ? 'bg-green-500' : `bg-${g}-200`}`}></div>
+                        <div className={`h-1 flex-1 rounded-full ${/[A-Z]/.test(form.password) ? 'bg-green-500' : `bg-${g}-200`}`}></div>
+                        <div className={`h-1 flex-1 rounded-full ${/[0-9]/.test(form.password) ? 'bg-green-500' : `bg-${g}-200`}`}></div>
+                    </div>
+                    {touched.password && errors.password && <p className="text-red-500 text-xs mt-1 flex items-center gap-1"><AlertCircle className="size-3" /> {errors.password}</p>}
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
+                    {/* Phone (Mask) */}
+                    <div>
+                        <label className={`text-xs font-semibold text-${g}-500 uppercase tracking-wider`}>Teléfono</label>
+                        <div className="relative mt-1">
+                            <Phone className={`absolute left-3 top-3 size-4 text-${g}-400`} />
+                            <input 
+                                type="text" 
+                                value={form.phone}
+                                onChange={handlePhone}
+                                onBlur={() => setTouched({...touched, phone: true})}
+                                className={`w-full pl-10 pr-4 py-2.5 rounded-lg border ${touched.phone && errors.phone ? 'border-red-500 bg-red-50 text-red-900' : `border-${g}-200 focus:border-${p}-500`} transition-all outline-none text-sm`}
+                                placeholder="70000000"
+                                maxLength={8}
+                            />
+                        </div>
+                    </div>
+                    {/* Price (Numeric) */}
+                    <div>
+                        <label className={`text-xs font-semibold text-${g}-500 uppercase tracking-wider`}>Precio</label>
+                        <div className="relative mt-1">
+                            <DollarSign className={`absolute left-3 top-3 size-4 text-${g}-400`} />
+                            <input 
+                                type="text" 
+                                value={form.price}
+                                onChange={(e) => {
+                                    if (!isNaN(Number(e.target.value))) setForm({...form, price: e.target.value})
+                                }}
+                                onBlur={() => setTouched({...touched, price: true})}
+                                className={`w-full pl-10 pr-4 py-2.5 rounded-lg border ${touched.price && errors.price ? 'border-red-500 bg-red-50 text-red-900' : `border-${g}-200 focus:border-${p}-500`} transition-all outline-none text-sm`}
+                                placeholder="0.00"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <button 
+                    disabled={!isFormValid}
+                    className={`w-full mt-4 py-3 rounded-xl font-bold text-sm transition-all ${isFormValid ? `bg-${p}-600 text-white shadow-lg shadow-${p}-500/30 hover:scale-[1.02]` : `bg-${g}-100 text-${g}-400 cursor-not-allowed`}`}
+                >
+                    {isFormValid ? "Enviar Formulario Seguro" : "Complete los campos"}
+                </button>
+            </div>
+        </div>
+
+        {/* Explanation */}
+        <div className="flex flex-col justify-center space-y-4">
+            <div className={`p-5 rounded-2xl bg-${g}-50 border border-${g}-100 transition-all hover:shadow-md`}>
+                <h4 className={`font-bold text-${g}-900 mb-2 flex items-center gap-2 text-sm`}><CheckCircle2 className={`text-${p}-600 size-5`} /> Validación Client-side</h4>
+                <p className={`text-sm text-${g}-600`}>El botón de "Enviar" se bloquea si falta un campo. Feedback inmediato.</p>
+            </div>
+            <div className={`p-5 rounded-2xl bg-${g}-50 border border-${g}-100 transition-all hover:shadow-md`}>
+                <h4 className={`font-bold text-${g}-900 mb-2 flex items-center gap-2 text-sm`}><ShieldCheck className={`text-${p}-600 size-5`} /> Tipos de datos obligatorios</h4>
+                <ul className={`text-sm text-${g}-600 space-y-1.5 list-none`}>
+                    <li className="flex items-start gap-2"><div className={`mt-1.5 size-1.5 rounded-full bg-${p}-500`}></div><span><strong>Emails:</strong> Validación de formato (@ y dominio).</span></li>
+                    <li className="flex items-start gap-2"><div className={`mt-1.5 size-1.5 rounded-full bg-${p}-500`}></div><span><strong>Passwords:</strong> Mín. 8 caracteres, mayúscula y número.</span></li>
+                    <li className="flex items-start gap-2"><div className={`mt-1.5 size-1.5 rounded-full bg-${p}-500`}></div><span><strong>Numéricos:</strong> Evitar letras en precio/cantidad.</span></li>
+                </ul>
+            </div>
+            <div className={`p-5 rounded-2xl bg-${g}-50 border border-${g}-100 transition-all hover:shadow-md`}>
+                <h4 className={`font-bold text-${g}-900 mb-2 flex items-center gap-2 text-sm`}><AlertTriangle className={`text-${p}-600 size-5`} /> Estados de Error Visual</h4>
+                <p className={`text-sm text-${g}-600`}>El borde del input se pone rojo y aparece un texto explicando el error.</p>
+            </div>
+            <div className={`p-5 rounded-2xl bg-${g}-50 border border-${g}-100 transition-all hover:shadow-md`}>
+                <h4 className={`font-bold text-${g}-900 mb-2 flex items-center gap-2 text-sm`}><Zap className={`text-${p}-600 size-5`} /> Máscaras de Entrada</h4>
+                <p className={`text-sm text-${g}-600`}>Control de entrada numérico para Bolivia (8 dígitos), ej: <code>77777777</code>.</p>
+            </div>
+        </div>
+    </div>
+  );
+};
 
 const PropuestaTecnica = () => {
   const [font, setFont] = useState('font-inter');
@@ -387,6 +552,23 @@ const PropuestaTecnica = () => {
               </div>
             </div>
           </div>
+        </section>
+
+        {/* Formularios y Validación */}
+        <section className="mt-20">
+          <header className="mb-12 text-center">
+            <div className={`inline-flex items-center gap-2 bg-${p}-50 text-${p}-700 px-4 py-2 rounded-full mb-6`}>
+              <ShieldCheck className="w-4 h-4" />
+              <span className="text-sm font-semibold uppercase tracking-wider">Seguridad y Validación</span>
+            </div>
+            <h2 className={`${montserrat.className} text-3xl font-extrabold text-${g}-900 mb-3`}>
+              Formularios Inteligentes
+            </h2>
+            <p className={`text-lg text-${g}-600 max-w-3xl mx-auto`}>
+              Ejemplo interactivo de validación en tiempo real, máscaras de entrada y gestión de errores.
+            </p>
+          </header>
+          <FormValidationDemo p={p} g={g} />
         </section>
 
         <footer className="mt-20 text-center">
