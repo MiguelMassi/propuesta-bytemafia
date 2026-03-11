@@ -377,7 +377,7 @@ export default function Propuesta7Marzo() {
             </div>
             
             <div className={`border-t border-${g}-200 pt-8 flex flex-col md:flex-row justify-between items-center gap-4`}>
-                <p className={`text-xs text-${g}-500`}>© 2024 InDevs Team. Todos los derechos reservados.</p>
+                <p className={`text-xs text-${g}-500`}>© 2026 InDevs Team. Todos los derechos reservados.</p>
             </div>
         </div>
       </footer>
