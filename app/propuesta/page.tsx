@@ -37,7 +37,8 @@ import {
   CheckCircle2,
   Image,
   Settings,
-  Search
+  Search,
+  Filter
 } from 'lucide-react';
 import { Inter, Montserrat } from 'next/font/google';
 
@@ -442,6 +443,77 @@ const PropuestaTecnica = () => {
                   </div>
                 </div>
               </div>
+            </div>
+
+            {/* 4. Navegación por Facetas */}
+            <div className={`bg-white p-8 rounded-xl border border-${g}-200 shadow-sm`}>
+                <h3 className={`text-xl font-bold text-${g}-800 mb-6 flex items-center gap-2`}>
+                    <Filter className={`text-${p}-600 size-5`} /> Navegación por Facetas (Filtros)
+                </h3>
+                <div className="flex flex-col md:flex-row gap-8">
+                    {/* Sidebar Mockup */}
+                    <div className={`w-full md:w-64 flex-shrink-0 border border-${g}-200 rounded-xl p-5 bg-${g}-50/50`}>
+                        <div className="flex justify-between items-center mb-6">
+                            <span className={`font-bold text-${g}-900 text-sm`}>Filtros</span>
+                            <button className={`text-${p}-600 text-xs font-medium hover:underline`}>Limpiar todo</button>
+                        </div>
+                        
+                        {/* Filter Group: Tipo */}
+                        <div className="mb-6">
+                            <p className={`text-xs font-bold text-${g}-500 uppercase tracking-wider mb-3`}>Tipo de Propiedad</p>
+                            <div className="space-y-2.5">
+                                <label className="flex items-center gap-2.5 text-sm cursor-pointer group">
+                                    <div className={`size-4 rounded border border-${g}-300 bg-white flex items-center justify-center group-hover:border-${p}-500 transition-colors`}>
+                                        <div className={`size-2.5 rounded-sm bg-${p}-600`}></div>
+                                    </div>
+                                    <span className={`text-${g}-700 font-medium`}>Casas</span>
+                                    <span className={`text-${g}-400 text-xs ml-auto`}>124</span>
+                                </label>
+                                <label className="flex items-center gap-2.5 text-sm cursor-pointer group">
+                                    <div className={`size-4 rounded border border-${g}-300 bg-white flex items-center justify-center group-hover:border-${p}-500 transition-colors`}></div>
+                                    <span className={`text-${g}-600 group-hover:text-${g}-900`}>Departamentos</span>
+                                    <span className={`text-${g}-400 text-xs ml-auto`}>85</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        {/* Filter Group: Precio */}
+                        <div className="mb-2">
+                            <p className={`text-xs font-bold text-${g}-500 uppercase tracking-wider mb-3`}>Rango de Precio</p>
+                            <div className="flex items-center gap-2 mb-4">
+                                <div className={`flex-1 bg-white border border-${g}-200 rounded px-2 py-1 text-xs text-${g}-600`}>$50k</div>
+                                <span className={`text-${g}-400`}>-</span>
+                                <div className={`flex-1 bg-white border border-${g}-200 rounded px-2 py-1 text-xs text-${g}-600`}>$450k</div>
+                            </div>
+                            <div className={`h-1.5 bg-${g}-200 rounded-full relative`}>
+                                <div className={`absolute left-0 right-1/3 top-0 bottom-0 bg-${p}-500 rounded-full`}></div>
+                                <div className={`absolute right-1/3 top-1/2 -translate-y-1/2 size-3 bg-white border-2 border-${p}-500 rounded-full shadow-sm cursor-pointer`}></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Content Preview Mockup */}
+                    <div className="flex-1 flex flex-col gap-4">
+                        {/* Active Tags */}
+                        <div className="flex items-center gap-2 flex-wrap">
+                            <span className={`text-sm text-${g}-500 mr-2`}>Activos:</span>
+                            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-${p}-50 text-${p}-700 text-xs font-medium border border-${p}-100`}>
+                                Casas <button className={`hover:bg-${p}-200 rounded-full p-0.5`}><X className="size-3" /></button>
+                            </span>
+                            <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-${p}-50 text-${p}-700 text-xs font-medium border border-${p}-100`}>
+                                $50k - $450k <button className={`hover:bg-${p}-200 rounded-full p-0.5`}><X className="size-3" /></button>
+                            </span>
+                        </div>
+                        
+                        {/* Skeleton Results */}
+                        <div className={`flex-1 border-2 border-dashed border-${g}-100 rounded-xl bg-${g}-50/30 flex items-center justify-center min-h-[200px]`}>
+                            <div className="text-center p-6">
+                                <Search className={`size-8 text-${g}-300 mx-auto mb-2`} />
+                                <p className={`text-${g}-500 text-sm`}>La lista de propiedades se actualiza automáticamente al filtrar.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
           </div>
         </section>
