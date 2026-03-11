@@ -19,7 +19,14 @@ import {
   Wrench,
   Wand2,
   Palette,
-  Check
+  Check,
+  AppWindow,
+  X,
+  CheckCircle,
+  AlertTriangle,
+  HelpCircle,
+  ChevronUp,
+  ChevronDown
 } from 'lucide-react';
 import { Inter, Montserrat } from 'next/font/google';
 
@@ -265,6 +272,117 @@ const PropuestaTecnica = () => {
                       Reintentar
                     </button>
                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Componentes de Interacción Avanzada */}
+        <section className="mt-20">
+          <header className="mb-12 text-center">
+            <div className={`inline-flex items-center gap-2 bg-${p}-50 text-${p}-700 px-4 py-2 rounded-full mb-6`}>
+              <AppWindow className="w-4 h-4" />
+              <span className="text-sm font-semibold uppercase tracking-wider">Interactividad Avanzada</span>
+            </div>
+            <h2 className={`${montserrat.className} text-3xl font-extrabold text-${g}-900 mb-3`}>
+              Componentes de Interacción
+            </h2>
+            <p className={`text-lg text-${g}-600 max-w-3xl mx-auto`}>
+              Elementos que enriquecen la experiencia del usuario proporcionando contexto, control y retroalimentación inmediata.
+            </p>
+          </header>
+
+          <div className="space-y-12">
+            {/* 1. Modales y Drawers */}
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className={`bg-white p-6 rounded-xl border border-${g}-200 shadow-sm relative overflow-hidden h-64`}>
+                <h3 className={`text-xl font-bold text-${g}-800 mb-4`}>Modales (Confirmaciones)</h3>
+                <div className={`bg-${g}-900/50 absolute inset-0 flex items-center justify-center p-4 backdrop-blur-sm`}>
+                  <div className="bg-white rounded-lg shadow-2xl p-6 max-w-sm w-full transform scale-100">
+                    <h4 className={`text-lg font-bold text-${g}-900 mb-2`}>¿Eliminar propiedad?</h4>
+                    <p className={`text-${g}-500 mb-4 text-sm`}>Esta acción no se puede deshacer. Todos los datos asociados se perderán.</p>
+                    <div className="flex justify-end gap-2">
+                      <button className={`px-3 py-1.5 rounded-lg text-${g}-600 hover:bg-${g}-100 text-sm font-medium`}>Cancelar</button>
+                      <button className="px-3 py-1.5 rounded-lg bg-red-600 text-white hover:bg-red-700 text-sm font-medium">Eliminar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className={`bg-white p-6 rounded-xl border border-${g}-200 shadow-sm relative overflow-hidden h-64`}>
+                <h3 className={`text-xl font-bold text-${g}-800 mb-4`}>Drawers (Menús Laterales)</h3>
+                <div className={`absolute top-0 right-0 h-full w-64 bg-white shadow-2xl border-l border-${g}-100 p-4 transform translate-x-0`}>
+                  <div className="flex justify-between items-center mb-6">
+                    <span className={`font-bold text-${g}-900`}>Filtros</span>
+                    <button className={`p-1 hover:bg-${g}-100 rounded`}><X className={`w-4 h-4 text-${g}-500`} /></button>
+                  </div>
+                  <div className="space-y-4">
+                    <div className={`h-2 bg-${g}-100 rounded w-full`}></div>
+                    <div className={`h-2 bg-${g}-100 rounded w-3/4`}></div>
+                    <div className={`h-2 bg-${g}-100 rounded w-1/2`}></div>
+                  </div>
+                  <button className={`w-full mt-8 bg-${p}-600 text-white py-2 rounded-lg text-sm`}>Aplicar</button>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. Toasts & Tooltips */}
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h3 className={`text-xl font-bold text-${g}-800 mb-4`}>Toasts (Notificaciones)</h3>
+                <div className={`bg-${g}-50 p-8 rounded-xl border border-${g}-200 flex flex-col gap-4 items-center justify-center h-full min-h-[200px]`}>
+                  <div className="bg-white px-4 py-3 rounded-lg shadow-lg border-l-4 border-green-500 flex items-center gap-3 w-full max-w-sm">
+                    <CheckCircle className="w-5 h-5 text-green-500" />
+                    <div>
+                      <p className={`text-sm font-medium text-${g}-900`}>Éxito</p>
+                      <p className={`text-xs text-${g}-500`}>Formulario enviado correctamente.</p>
+                    </div>
+                  </div>
+                  <div className="bg-white px-4 py-3 rounded-lg shadow-lg border-l-4 border-red-500 flex items-center gap-3 w-full max-w-sm">
+                    <AlertTriangle className="w-5 h-5 text-red-500" />
+                    <div>
+                      <p className={`text-sm font-medium text-${g}-900`}>Error</p>
+                      <p className={`text-xs text-${g}-500`}>No se pudo cargar la imagen.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className={`text-xl font-bold text-${g}-800 mb-4`}>Tooltips (Ayuda Contextual)</h3>
+                <div className={`bg-white p-8 rounded-xl border border-${g}-200 flex items-center justify-center h-full min-h-[200px]`}>
+                  <div className="relative group">
+                    <button className={`p-3 rounded-full bg-${g}-100 hover:bg-${g}-200 transition-colors`}>
+                      <HelpCircle className={`w-6 h-6 text-${g}-600`} />
+                    </button>
+                    <div className={`absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-${g}-900 text-white text-xs rounded-md whitespace-nowrap opacity-100 transition-opacity`}>
+                      Más información aquí
+                      <div className={`absolute top-full left-1/2 -translate-x-1/2 border-4 border-transparent border-t-${g}-900`}></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 3. Acordeones */}
+            <div>
+              <h3 className={`text-xl font-bold text-${g}-800 mb-4`}>Acordeones (FAQs)</h3>
+              <div className={`bg-white rounded-xl border border-${g}-200 overflow-hidden`}>
+                <div className={`border-b border-${g}-100`}>
+                  <button className={`w-full flex justify-between items-center p-4 text-left hover:bg-${g}-50`}>
+                    <span className={`font-medium text-${g}-700`}>¿Cómo gestionan la seguridad de los datos?</span>
+                    <ChevronUp className={`w-5 h-5 text-${g}-400`} />
+                  </button>
+                  <div className={`p-4 pt-0 text-${g}-600 text-sm`}>
+                    Utilizamos Row Level Security (RLS) de Supabase para asegurar que cada usuario solo acceda a sus propios datos.
+                  </div>
+                </div>
+                <div>
+                  <button className={`w-full flex justify-between items-center p-4 text-left hover:bg-${g}-50`}>
+                    <span className={`font-medium text-${g}-700`}>¿Es escalable la infraestructura?</span>
+                    <ChevronDown className={`w-5 h-5 text-${g}-400`} />
+                  </button>
                 </div>
               </div>
             </div>
