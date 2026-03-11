@@ -34,7 +34,10 @@ import {
   Eye,
   EyeOff,
   DollarSign,
-  CheckCircle2
+  CheckCircle2,
+  Image,
+  Settings,
+  Search
 } from 'lucide-react';
 import { Inter, Montserrat } from 'next/font/google';
 
@@ -569,6 +572,138 @@ const PropuestaTecnica = () => {
             </p>
           </header>
           <FormValidationDemo p={p} g={g} />
+        </section>
+
+        {/* Sistemas de Diseño */}
+        <section className="mt-20">
+          <header className="mb-12 text-center">
+            <div className={`inline-flex items-center gap-2 bg-${p}-50 text-${p}-700 px-4 py-2 rounded-full mb-6`}>
+              <Palette className="w-4 h-4" />
+              <span className="text-sm font-semibold uppercase tracking-wider">Sistema de Diseño</span>
+            </div>
+            <h2 className={`${montserrat.className} text-3xl font-extrabold text-${g}-900 mb-3`}>
+              Consistencia Visual
+            </h2>
+            <p className={`text-lg text-${g}-600 max-w-3xl mx-auto`}>
+              Estándares tipográficos, estados vacíos y adaptabilidad a modo oscuro.
+            </p>
+          </header>
+
+          <div className="space-y-12">
+            {/* 1. Tipografía */}
+            <div className={`bg-white p-8 rounded-2xl border border-${g}-200 shadow-sm`}>
+               <h3 className={`text-xl font-bold text-${g}-800 mb-6 border-b border-${g}-100 pb-2`}>Escala Tipográfica</h3>
+               <div className="space-y-6">
+                  <div className="grid md:grid-cols-4 items-center gap-4">
+                    <span className={`text-${g}-400 text-sm font-mono`}>H1 / 4xl / Extrabold</span>
+                    <h1 className="col-span-3 text-4xl font-extrabold text-slate-900">El rápido zorro marrón</h1>
+                  </div>
+                  <div className="grid md:grid-cols-4 items-center gap-4">
+                    <span className={`text-${g}-400 text-sm font-mono`}>H2 / 3xl / Bold</span>
+                    <h2 className="col-span-3 text-3xl font-bold text-slate-900">Salta sobre el perro perezoso</h2>
+                  </div>
+                  <div className="grid md:grid-cols-4 items-center gap-4">
+                    <span className={`text-${g}-400 text-sm font-mono`}>H3 / xl / Semibold</span>
+                    <h3 className="col-span-3 text-xl font-semibold text-slate-900">Visualización de datos y métricas</h3>
+                  </div>
+                  <div className="grid md:grid-cols-4 items-center gap-4">
+                    <span className={`text-${g}-400 text-sm font-mono`}>P / base / Regular</span>
+                    <p className={`col-span-3 text-base leading-relaxed text-${g}-600`}>
+                      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    </p>
+                  </div>
+                  <div className="grid md:grid-cols-4 items-center gap-4">
+                    <span className={`text-${g}-400 text-sm font-mono`}>Small / sm / Medium</span>
+                    <small className={`col-span-3 text-sm font-medium text-${g}-500`}>
+                      *Términos y condiciones aplican. Válido hasta agotar stock.
+                    </small>
+                  </div>
+               </div>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+                {/* 2. Empty State */}
+                <div className={`bg-white p-8 rounded-2xl border border-${g}-200 shadow-sm flex flex-col`}>
+                    <h3 className={`text-xl font-bold text-${g}-800 mb-6`}>Empty State (Sin Datos)</h3>
+                    <div className={`flex-1 flex flex-col items-center justify-center p-8 bg-${g}-50 rounded-xl border-2 border-dashed border-${g}-200 text-center`}>
+                        <div className={`size-16 bg-white rounded-full flex items-center justify-center mb-4 shadow-sm`}>
+                            <Image className={`size-8 text-${g}-400`} />
+                        </div>
+                        <h4 className={`text-lg font-bold text-${g}-900`}>Sin imágenes todavía</h4>
+                        <p className={`text-${g}-500 text-sm mt-1 mb-6 max-w-[250px]`}>
+                            Tu galería está vacía. ¡Sube tu primera foto para empezar a destacar!
+                        </p>
+                        <button className={`bg-${p}-600 text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:bg-${p}-700 transition-colors shadow-lg shadow-${p}-500/20`}>
+                            Subir Imagen
+                        </button>
+                    </div>
+                </div>
+
+                {/* 3. Dark Mode Preview */}
+                <div className={`bg-slate-950 p-8 rounded-2xl border border-slate-800 shadow-xl flex flex-col relative overflow-hidden`}>
+                    <div className="absolute top-4 right-4 bg-amber-500/10 text-[10px] uppercase tracking-wider font-bold text-amber-500 px-2 py-1 rounded border border-amber-500/20">Dark Mode</div>
+                    <h3 className="text-xl font-bold text-white mb-6">Modo Oscuro (Minimizado)</h3>
+                    
+                    {/* Mini Home Page Simulation */}
+                    <div className="w-full max-w-[320px] mx-auto bg-slate-900 rounded-xl overflow-hidden border border-slate-800 shadow-2xl flex flex-col">
+                        
+                        {/* Mini Navbar */}
+                        <div className="h-10 border-b border-slate-800 flex items-center justify-between px-4 bg-slate-900/90 backdrop-blur-sm sticky top-0 z-10">
+                            <div className="flex items-center gap-1.5">
+                                <div className="bg-amber-600 p-1 rounded"><Building2 className="size-3 text-white" /></div>
+                                <span className="font-bold text-slate-100 text-xs">In<span className="text-amber-500">Devs</span></span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <Search className="size-3 text-slate-400" />
+                                <Menu className="size-3 text-slate-400" />
+                            </div>
+                        </div>
+
+                        {/* Mini Hero */}
+                        <div className="relative h-28 bg-slate-800">
+                            <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-amber-900/20 to-slate-900 z-10"></div>
+                            <div className="absolute inset-0 bg-slate-800"></div> {/* Fallback bg */}
+                            <div className="absolute inset-0 z-20 flex flex-col justify-center px-4">
+                                <span className="text-amber-500 text-[8px] font-bold tracking-wider uppercase mb-1">Nueva Colección</span>
+                                <h3 className="text-white text-sm font-bold leading-tight mb-2">Hogares que <br/>inspiran vida.</h3>
+                                <div className="h-6 bg-white/10 backdrop-blur border border-white/10 rounded-full flex items-center px-2">
+                                    <span className="text-slate-400 text-[8px]">Buscar propiedad...</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Mini Listings */}
+                        <div className="p-4 space-y-3 bg-slate-900">
+                            <div className="flex justify-between items-end">
+                                <h4 className="text-white text-xs font-bold">Destacados</h4>
+                                <span className="text-amber-500 text-[8px]">Ver todo</span>
+                            </div>
+                            <div className="grid grid-cols-2 gap-3">
+                                {[1, 2].map((i) => (
+                                    <div key={i} className="bg-slate-800 rounded-lg overflow-hidden border border-slate-700 hover:border-amber-500/50 transition-colors group cursor-pointer">
+                                        <div className="h-16 bg-slate-700 relative flex items-center justify-center">
+                                            <Image className="size-4 text-slate-600" />
+                                            <div className="absolute top-1 right-1 bg-amber-600 text-white text-[6px] px-1 rounded-sm">Venta</div>
+                                        </div>
+                                        <div className="p-2">
+                                            <div className="h-2 w-3/4 bg-slate-600 rounded mb-1"></div>
+                                            <div className="h-1.5 w-1/2 bg-amber-500/20 rounded mb-2"></div>
+                                            <div className="flex justify-between items-center">
+                                                <span className="text-white text-[8px] font-bold">$250k</span>
+                                                <div className="size-3 bg-slate-700 rounded-full flex items-center justify-center group-hover:bg-amber-600 transition-colors">
+                                                    <ChevronRight className="size-2 text-slate-400 group-hover:text-white" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+          </div>
         </section>
 
         <footer className="mt-20 text-center">
